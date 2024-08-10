@@ -35,7 +35,7 @@ void solve() {
     FOR(i, 2, N+1){
         cout << i << ": ";
         if(pr[i]) cout << i;
-        else{z
+        else{
             for(auto j: prs){
                 if(j>i) break;
                 if(i%j==0){
