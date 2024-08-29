@@ -32,7 +32,7 @@ void solve() {
         if(pr[i]) cout << i;
         else{
             FOR(j, 2, i+1){
-            	if(j>i) break;
+            	// if(j>i) break;
                 if(pr[j] && i%j==0){
                     cout << j << " ";
                 }
