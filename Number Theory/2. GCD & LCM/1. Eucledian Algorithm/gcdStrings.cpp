@@ -18,7 +18,7 @@ string md(string a, string b){
     int n = b.length();
     int an = a.length();
     while((a.size())>=(b.size()) && a.substr(0,n)==b){
-        a = a.substr(n, an);
+        a = a.substr(n, a.size());
     }
     return a;
 }
