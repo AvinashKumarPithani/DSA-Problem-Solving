@@ -15,6 +15,7 @@ typedef vector<ull> vull;
 const int N = 1000;
 bool pr[N+1];
 vi prs;
+bool nold[N+1];
 void sieve() {
     FOR(i, 2, N+1) pr[i] = true;
     for(int i=2; i*i<=N; i++){
@@ -29,27 +30,28 @@ void sieve() {
             prs.pb(i);
         }
     }
+    int x = prs.size();
+    FOR(i, 1, x){
+        int r = prs[i]+prs[i-1]+1;
+        if(r>N) break;
+        if(pr[r]){
+            nold[r] = true;
+        }
+    }
 }
-// O(N^2) solution
+// O(N*loglogN) solution
 void solve() {
     int n,k;
     cin >> n >> k;
     int c = 0;
-    int x = prs.size();
-    FOR(i, 5, n){
-        if(pr[i]){
-            FOR(j, 1, x){
-                int r = prs[j-1] + prs[j] + 1;
-                if(r > i) break;
-                else if( r == i){
-                    cout << i << " ";
-                    c++;
-                    break;
-                }
-            }
+    
+    FOR(i, 2, n+1){
+        if(nold[i]){
+            c++;
+            cout << i << " ";
         }
     }
-    cout<< endl;
+    cout << '\n';
     if(c==k){
         cout << "YES";
     }
