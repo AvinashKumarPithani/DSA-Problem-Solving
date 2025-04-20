@@ -12,15 +12,18 @@ typedef long long int ll;
 typedef unsigned long long int ull;
 typedef vector<ll> vll;
 typedef vector<ull> vull;
-//Prime numbers from 2 to n using Sieve of Erathostenes in O(N + N*loglogN) == O(N*loglogN)
+//Prime numbers from 2 to n using Sieve of Erathostenes in O(N*loglogN)
 const int N = 1000000;
 bool pr[N+1];
+
 void sieve(){
-    FOR(i, 2, N+1) pr[i] = true; //O(N)
+    // FOR(i, 2, N+1) pr[i] = true;
+    pr[0]=true; //small optimization O(N + N*loglogN) --> O(N*loglogN)
+    pr[1]=true;
     for(int i=2; i*i<=N; i++){
-        if(pr[i]){
+        if(!pr[i]){
             for(int j=i*i; j<=N; j+=i){
-                pr[j] = false;
+                pr[j] = true;
             }
         }
     }
@@ -30,7 +33,7 @@ void solve() {
     int n;
     cin >> n;
     FOR(i, 2, n+1){
-        if(pr[i]) cout << i << " ";
+        if(!pr[i]) cout << i << " ";
     }
 }
 
