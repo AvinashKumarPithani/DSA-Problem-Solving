@@ -13,6 +13,8 @@ typedef unsigned long long int ull;
 typedef vector<ll> vll;
 typedef vector<ull> vull;
 
+// https://www.spoj.com/problems/TDKPRIME/
+
 const int N = 86028121; //50,00,000 th prime i.e. (10^6)th prime found in (10^8)s
 bool pr[N+1];
 vi prs;
