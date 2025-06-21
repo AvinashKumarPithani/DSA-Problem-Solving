@@ -13,31 +13,29 @@ typedef unsigned long long int ull;
 typedef vector<ll> vll;
 typedef vector<ull> vull;
 
-// https://leetcode.com/problems/powx-n/
+// https://leetcode.com/problems/count-good-numbers/
 
-double power(double a, ll b) { // TC: O(log b)  SC: O(1)
-    double ans = 1;
-    while(b){
-        if(b&1) ans *= a;
-        a *= a;
-        b = b>>1;
-    }
-    return ans; 
+const int MOD = 1e9+7;
+ll pow(int a, ll b){
+    if(b == 0) return 1;
+    ll ans = pow(a, b/2);
+    ans = (ans*ans) % MOD;
+    if(b % 2 == 1) ans = (ans*a) % MOD;
+    return ans;
 }
-double myPow(double x, int n) { 
-    // int r = n;
-    ll r = n; // use long long to handle INT_MIN safely
-    if(n < 0) r = -r;
-    double res = power(x, r);
-    if(n < 0) return 1.0/res;
-    return res;
+
+int countGoodNumbers(long long n) {  // O(log n/2);
+    ll res = 1;
+    if(n&1) res = 5;
+    res = (res*pow(20, n/2)) % MOD; // Since 5*4 = 20
+
+    return res; 
 }
 
 void solve() {
-    double x;
-    int n;
-    cin >> x >> n;
-    cout << myPow(x, n);
+    ll n;
+    cin >> n;
+    cout << countGoodNumbers(n);
 }
 
 int main() {
