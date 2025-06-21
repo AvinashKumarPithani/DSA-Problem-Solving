@@ -13,18 +13,19 @@ typedef unsigned long long int ull;
 typedef vector<ll> vll;
 typedef vector<ull> vull;
 
-int pow(int a, int b){
+const int MOD = 1e9+7;
+ll pow(int a, int b){
     if(b == 0) return 1;
-    int ans = pow(a, b/2);
-    ans *= ans;
-    if(b % 2 == 0) ans *= a;
+    ll ans = pow(a, b/2);
+    ans = (ans*ans) % MOD;
+    if(b % 2 == 1) ans = (ans*a) % MOD;
     return ans;
 }
 
 void solve() {
     int a, b;
     cin >> a >> b;
-    cout << pow(a, b);
+    cout << pow(a, b) % MOD;
 }
 
 int main() {
