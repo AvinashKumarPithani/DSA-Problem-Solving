@@ -15,18 +15,18 @@ typedef vector<ull> vull;
 
 // https://leetcode.com/problems/powx-n/
 
-double power(double a, long long b) { // TC: O(log b)  SC: O(log b)
-    // if(b == 1) return a; 
-    // If b == 0, the recursion never ends (because there's no base case), leading to infinite recursion and a stack overflow.
-    if(b == 0) return 1.0; 
-    double ans = power(a, b/2);
-    ans *= ans;
-    if(b&1) ans *= a;
+double power(double a, ll b) { // TC: O(log b)  SC: O(1)
+   double ans = 1;
+    while(b){
+        if(b&1) ans *= a;
+        a *= a;
+        b = b>>1;
+    }
     return ans; 
 }
 double myPow(double x, int n) { 
     // int r = n;
-    long long r = n; // use long long to handle INT_MIN safely
+    ll r = n; // use long long to handle INT_MIN safely
     if(n < 0) r = -r;
     double res = power(x, r);
     if(n < 0) return 1.0/res;
