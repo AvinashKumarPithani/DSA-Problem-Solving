@@ -14,58 +14,42 @@ typedef vector<ll> vll;
 typedef vector<ull> vull;
 
 const int MOD = 1e9+7;
+const int N = 1e5;
+ll f[N];
+
+void pre_fact() {
+  f[0] = 1;
+  FOR(i, 1, N+1) {
+    f[i] = (i*f[i-1]) % MOD;
+  }
+}
+
 ll fact(int n) {
   ll res = 1;
   FOR(i, 1, n+1) {
-    res = (res*i)%MOD;
+    res = (res*i) % MOD;
   }
-  // cout << endl << res;
   return res;
 }
 
-// ll pow(ll a, ll b) {
-//   ll ans = 1;
-//   while(b){
-//     if(b&1) ans = (ans*a) % MOD;
-//     a = (a*a) % MOD;
-//     b = b>>1;
-//   }
-//   cout << endl <<ans;
-//   return ans;
-// }
-
-// ll pow(int a, int b){
-//     if(b == 0) return 1;
-//     ll ans = pow(a, b/2);
-//     ans = (ans*ans) % MOD;
-//     if(b % 2 == 1) ans = (ans*a) % MOD;
-//     cout << endl <<ans;
-//     return ans;
-// }
-
-
-// ll mod_inv(ll x) {
-//   return pow(x, MOD-2);
-// }
-
-ll mod_inv(int x){
-  ll a = x;
-  int b = MOD-2;
-  ll ans = 1;
-  while(b){
-    if(b&1) ans = (ans*a) % MOD;
-    a = (a*a) % MOD;
-    b = b>>1;
-  }
+ll pow(int a, int b){
+  if(b == 0) return 1;
+  ll ans = pow(a, b/2);
+  ans = (ans*ans) % MOD;
+  if(b % 2 == 1) ans = (ans*a) % MOD;
   // cout << endl <<ans;
   return ans;
-  // return pow(x, MOD-2);
 }
 
-int ncr(int n, int r) {   // O(n + log MOD)
-  ll nf = fact(n);
-  ll nrfi = mod_inv(fact(n-r));
-  ll rfi = mod_inv(fact(r));
+
+ll mod_inv(int x) {
+  return pow(x, MOD-2);
+}
+
+int ncr(int n, int r) {   // O(log MOD)
+  ll nf = f[n];
+  ll nrfi = mod_inv(f[n-r]);
+  ll rfi = mod_inv(f[r]);
   // cout << endl << nf << " " << nrfi << " " << rfi;
   return (((nf*nrfi)%MOD)*rfi)%MOD;
 }
@@ -76,12 +60,13 @@ void solve() {
   cout << ncr(n, r);
 }
 
-int main() {    // O(t*(n + log MOD)) ~ O(t*n)
+int main() {    // O(n + t*log MOD)
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
   cout.tie(NULL);
   int t = 1;
   cin >> t;
+  pre_fact();
   while(t--) {
       solve();
       cout << '\n';
