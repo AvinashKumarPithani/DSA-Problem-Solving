@@ -16,13 +16,7 @@ typedef vector<ull> vull;
 const int MOD = 1e9+7;
 const int N = 1e5;
 ll f[N+1];
-
-void pre_fact() {
-  f[0] = 1;
-  FOR(i, 1, N+1) {
-    f[i] = (i*f[i-1]) % MOD;
-  }
-}
+ll fi[N+1];
 
 // ll fact(int n) {
 //   ll res = 1;
@@ -46,10 +40,21 @@ ll mod_inv(int x) {
   return pow(x, MOD-2);
 }
 
-int ncr(int n, int r) {   // O(log MOD)
+void pre_compute() {
+  f[0] = 1;
+  FOR(i, 1, N+1) {
+    f[i] = (i*f[i-1]) % MOD;
+  }
+  fi[N] = mod_inv(f[N]);
+  rFOR(i, N-1, 0) {
+    fi[i] = ((i+1)*fi[i+1]) % MOD;
+  }
+}
+
+int ncr(int n, int r) {   // O(1)
   ll nf = f[n];
-  ll nrfi = mod_inv(f[n-r]);
-  ll rfi = mod_inv(f[r]);
+  ll nrfi = fi[n-r];
+  ll rfi = fi[r];
   // cout << endl << nf << " " << nrfi << " " << rfi;
   return (((nf*nrfi)%MOD)*rfi)%MOD;
 }
@@ -60,13 +65,13 @@ void solve() {
   cout << ncr(n, r);
 }
 
-int main() {    // O(N + T*log MOD) ~ O(T*log MOD) ~ O(N*log MOD) (since T,N <= 1e5)
+int main() {    // O(N + log MOD + T) ~ O(N + T)
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
   cout.tie(NULL);
   int t = 1;
   cin >> t;
-  pre_fact();   // O(N)
+  pre_compute(); // O(N + log MOD)
   while(t--) {
       solve();
       cout << '\n';
