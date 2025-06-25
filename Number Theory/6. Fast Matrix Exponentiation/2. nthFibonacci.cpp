@@ -48,33 +48,38 @@ matrix pow(matrix &a, int b) {
   return ans;
 }
 
-void solve() {      // O(log n)
-  // matrix x = {{
-  //   {2, 3},
-  //   {1, 2}
-  // }};
-  ll a, b, c, d;
-  // cout << "Enter 2 by 2 Matrix:" << '\n';
-  cin >> a >> b >> c >> d;
+void solve() {
+  matrix x = {{
+    {1, 1},
+    {1, 0}
+  }};
+  // ll a, b, c, d;
+  // // cout << "Enter 2 by 2 Matrix:" << '\n';
+  // cin >> a >> b >> c >> d;
   
   int n;
   // cout << "Enter the power: ";
   cin >> n;
 
-  matrix x = {{
-    {a, b},
-    {c, d}
-  }};
-  matrix res = pow(x, n);
-  FOR(i, 0, 2) {
-    FOR(j, 0, 2) {
-      cout << res.m[i][j] << " ";
-    }
-    cout << '\n';
+  // matrix x = {{
+  //   {a, b},
+  //   {c, d}
+  // }};
+  if(n==0) {
+    cout << 1;
+    return;
   }
+  matrix res = pow(x, n-1);
+  cout << res.m[0][0] + res.m[0][1];
+  // FOR(i, 0, 2) {
+  //   FOR(j, 0, 2) {
+  //     cout << res.m[i][j] << " ";
+  //   }
+  //   cout << '\n';
+  // }
 }
 
-int main() {      // O(t*log N)
+int main() {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
   cout.tie(NULL);
