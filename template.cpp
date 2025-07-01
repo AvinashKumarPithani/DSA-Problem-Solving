@@ -12,8 +12,14 @@ typedef long long int ll;
 typedef unsigned long long int ull;
 typedef vector<ll> vll;
 typedef vector<ull> vull;
+const int MOD = 1e9+7;
 
-void solve() {
+class Solution {
+public:
+    
+};
+
+void solve(Solution sol) {
     
 }
 
@@ -23,8 +29,9 @@ int main() {
     cout.tie(NULL);
     int t = 1;
     cin >> t;
+    Solution obj = Solution();
     while(t--) {
-        solve();
+        solve(obj);
         cout << '\n';
     }
     return 0;
