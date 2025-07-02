@@ -17,11 +17,27 @@ const int MOD = 1e9+7;
 
 class Solution {
 public:
-    
+    int missingNumber(vector<int>& nums) {    // TC: O(n), SC: O(n)
+      int n = nums.size();
+      vb hash(n+1, false);
+      FOR(i, 0, n) {
+        hash[nums[i]] = true;
+      }
+      FOR(i, 0, n+1) {
+        if(!hash[i]) return i;
+      }
+      return -1;
+    }
 };
 
 void solve(Solution sol) {
-    
+    vi nums;
+    FOR(i, 0, nums.size()){
+      int x;
+      cin >> x;
+      nums.pb(x);
+    }
+    cout << sol.missingNumber(nums);
 }
 
 int main() {
