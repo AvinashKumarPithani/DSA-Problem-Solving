@@ -20,11 +20,12 @@ using namespace std;
 
 class Solution {
 public:
-    vector<vector<int>> threeSum(vector<int>& nums) {   // O(n^2 * log n)
+    vector<vector<int>> threeSum(vector<int>& nums) {   // O(n^2)
       sort(nums.begin(), nums.end()); 
       int n = nums.size();
-      set<vi> s;
-      FOR(i, 0, n-2) {
+      vector<vi> ans;
+      int i=0;
+      while(i<n-2) {
         int j = i+1;
         int k = n-1;
         int target = - nums[i];
@@ -36,13 +37,16 @@ public:
             j++;
           }
           else {
-            s.insert({nums[i], nums[j], nums[k]});    // O(log n)
+            ans.pb({nums[i], nums[j], nums[k]});
             j++;
             k--;
+            while(j<k && nums[j]==nums[j-1]) j++;
+            while(j<k && nums[k]==nums[k+1]) k--;
           }
         }
-      }
-      vector<vi> ans(s.begin(), s.end());
+        i++;
+        while(i<n-2 && nums[i]==nums[i-1]) i++;
+      }     
       return ans;
     }
 };
