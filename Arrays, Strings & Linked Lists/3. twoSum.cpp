@@ -33,11 +33,14 @@ public:
 };
 
 void solve(Solution sol) {
+    string line;
+    getline(cin, line); // Read the whole line
+
+    istringstream iss(line); // Create stream from line
     vi nums;
-    FOR(i, 0, nums.size()){
-      int x;
-      cin >> x;
-      nums.pb(x);
+    int x;
+    while (iss >> x) {
+      nums.pb(x); // Extract numbers one by one
     }
     int k;
     cin >> k;
@@ -52,7 +55,7 @@ int main() {
     cin.tie(NULL);
     cout.tie(NULL);
     int t = 1;
-    cin >> t;
+    // cin >> t;
     Solution obj = Solution();
     while(t--) {
         solve(obj);
