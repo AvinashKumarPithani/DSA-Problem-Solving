@@ -19,7 +19,7 @@ const int MOD = 1e9+7;
 
 class Solution {
   public:
-    void sortIt(vector<long long>& arr) {     // O(n*log n)
+    void sortIt(vector<long long>& arr) {     // TC: O(n*log n), SC: O(1)
       int n = arr.size();
       int i = 0;
       int j = n-1;
@@ -43,7 +43,7 @@ void solve(Solution sol) {
 
     istringstream iss(line); // Create stream from line
     vll nums;
-    int x;
+    ll x;
     while (iss >> x) {
       nums.pb(x); // Extract numbers one by one
     }

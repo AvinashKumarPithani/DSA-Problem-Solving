@@ -69,7 +69,7 @@ void solve(Solution sol) {
 
     istringstream iss(line); // Create stream from line
     vll nums;
-    int x;
+    ll x;
     while (iss >> x) {
       nums.pb(x); // Extract numbers one by one
     }
