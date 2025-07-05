@@ -17,30 +17,44 @@ const int MOD = 1e9+7;
 
 // https://acmp.ru/asp/do/index.asp?main=task&id_course=2&id_section=18&id_topic=42&id_problem=262
 
+// finding all positions in string t where pattern p matches
+
 const int P = 31;
+const int Pi = 129032259;
 
 class Solution {
   public:
-    ll substringSearch(string& s) {     // O(n^2)
-      int n = s.length();
-      set<ll> ans;
-      FOR(i, 0, n) {
-        int last_hash = 0;
-        ll pp = 1;
-        FOR(j, i, n) {
-          last_hash = (last_hash + (s[j]-'a'+1)*pp) % MOD;
-          ans.insert(last_hash);
-          pp = (pp*P) % MOD;
-        }
+    vi substringSearch(string& t, string& p) {     // O(n)
+      int n = t.length();
+      int m = p.length();
+      if(m > n) return {-1};
+      vi ans;
+      ll hash_pattern = 0;
+      ll hash_text = 0;
+      ll pp = 1;
+      FOR(i, 0, m) {
+        hash_pattern = (hash_pattern + (p[i]-'a'+1)*pp) % MOD;
+        hash_text = (hash_text + (t[i]-'a'+1)*pp) % MOD;
+        pp = (pp*P) % MOD;
       }
-      return ans.size();
+      if(hash_text == hash_pattern) ans.pb(0);
+      FOR(i, m, n) {
+        hash_text = (hash_text - (t[i-m]-'a'+1) + (t[i]-'a'+1)*pp) % MOD;
+        hash_text = (hash_text * Pi) % MOD;
+        if(hash_text == hash_pattern) ans.pb(i-m+1);
+      }
+      if(ans.empty()) return {-1};
+      return ans;
     }
 };
 
 void solve(Solution sol) {
-    string s, p;
-    cin >> s >> p;
-    cout << sol.number_of_unique_substrings(s);
+    string t, p;
+    cin >> t >> p;
+    vi res = sol.substringSearch(t, p);
+    for(auto i: res) {
+      cout << i << " ";
+    }
 }
 
 int main() {
