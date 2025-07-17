@@ -15,26 +15,24 @@ typedef vector<ull> vull;
 typedef vector<bool> vb;
 const int MOD = 1e9+7;
 
-// https://www.geeksforgeeks.org/problems/koko-eating-bananas/1
+// https://leetcode.com/problems/find-the-smallest-divisor-given-a-threshold/
 
 class Solution {
-  public:
-    int bs(vi& a, int k, int l, int r) {
-      if(l == r) return l;
+public:
+    int bs(vi& a, int t, int l, int r) {
+      if(l==r) return l;
 
       int mid = (l+r)/2;
-      int h = 0;
-      for(auto j : a) {
-        h += ceil(j*1.0/mid);
+      int s = 0;
+      for(auto j: a) {
+        s += ceil(j*1.0/mid);
       }
-      if(h <= k) return bs(a, k, l, mid);
-      else return bs(a, k, mid+1, r);
+      if(s <= t) return bs(a, t, l, mid);
+      else return bs(a, t, mid+1, r);
     }
-    
-    int kokoEat(vector<int>& arr, int k) {      // recursive binarySearch -- O(n*log m) 
-      int n = arr.size();
-      int m = *max_element(arr.begin(), arr.end());
-      return bs(arr, k, 1, m);
+    int smallestDivisor(vector<int>& nums, int threshold) {     // recursive binarySearch -- O(n*log m)
+      int m = *max_element(nums.begin(), nums.end());
+      return bs(nums, threshold, 1, m);
     }
 };
 
@@ -51,7 +49,7 @@ void solve(Solution sol) {
     int k;
     cin >> k;
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    int res = sol.kokoEat(nums, k);
+    int res = sol.smallestDivisor(nums, k);
     cout << res;
 }
 
