@@ -22,10 +22,11 @@ class Solution {
     ll pr(int n, int a, int b, int k) {
       return (ll)k*b - (ll)k*(k-1)/2 + (ll)(n-k)*a;
     }
-    
+
     ll newBakery(int n, int a, int b) {     // O(n)
+      if(b <= a) return pr(n, a, b, 0);
       ll ans = 0;
-      FOR(i, 0, min(n, b)){
+      FOR(i, 0, min(n, b)+1){
         ans = max(ans, pr(n, a, b, i));
       }
       return ans;
