@@ -1,0 +1,98 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define endl '\n'
+#define FOR(i,a,b) for(int i=(a); i<(b); i++)
+#define FORk(i,a,b,k) for(int i=(a); i<b; i+=k)
+#define rFOR(i,a,b) for(int i=(a); i>=(b); i--)
+#define rFORk(i,a,b,k) for(int i=(a); i>=(b); i-=k)
+#define pb push_back
+typedef vector<int> vi;
+typedef vector<string> vs;
+typedef long long int ll;
+typedef unsigned long long int ull;
+typedef vector<ll> vll;
+typedef vector<ull> vull;
+typedef vector<bool> vb;
+const int MOD = 1e9+7;
+
+// https://leetcode.com/problems/next-greater-element-i/
+
+
+class Solution {
+public:
+    int bs(vector<pair<int, int>> &a, int key, int l, int r) {
+      if(l <= r){
+        int mid = (l+r)/2;
+        if(key < a[mid].first) return bs(a, key, 0, mid-1);
+        else if(key > a[mid].first) return bs(a, key, mid+1, r);
+        else return a[mid].second;
+      }
+      return -1;
+    }
+    vector<int> nextGreaterElement(vector<int>& nums1, vector<int>& nums2) {    // using stack & binarySearch -- O(n2 + n1*log n2) ~ O(N*log N)
+      int n1 = nums1.size();  
+      int n2 = nums2.size();
+      vi m(n2, -1);
+      stack<int> s;
+
+      rFOR(i, n2-1, 0) {
+        while(!s.empty() && s.top() <= nums2[i]){
+          s.pop();
+        }
+        if(!s.empty()) {
+          m[i] = s.top();
+        }
+        s.push(nums2[i]);
+      }
+      vector<pair<int, int>> np;
+      FOR(i, 0, n2) {
+        np.pb({nums2[i], m[i]});
+      }
+      sort(np.begin(), np.end());
+      vi ans;
+      for(auto i: nums1) {
+        int x = bs(np, i, 0, n2-1);
+        ans.pb(x);
+      }
+      return ans;
+    }
+};
+
+void solve(Solution sol) { 
+    string line;
+    getline(cin, line); // Read the whole line
+    istringstream iss1(line); // Create stream from line
+    vi nums1;
+    int x;
+    while (iss1 >> x) {     
+      nums1.pb(x); // Extract numbers one by one 
+    }
+
+    // cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+    getline(cin, line); // Read the whole line
+    istringstream iss2 (line); // Create stream from line
+    vi nums2;
+    while (iss2 >> x) {     
+      nums2.pb(x); // Extract numbers one by one 
+    }
+    vi res = sol.nextGreaterElement(nums1, nums2);
+    for(auto i: res) {
+      cout << i << " ";
+    }
+}
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+    int t = 1;
+    cin >> t;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    Solution obj = Solution();
+    while(t--) {
+        solve(obj);
+        cout << '\n';
+    }
+    return 0;
+}
