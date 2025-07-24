@@ -45,7 +45,7 @@ class Solution {
         maxHeapify(a, i, 0);
       }
     }
-    void sortIt(vector<long long>& arr) {     // TC: O(n*log n), SC: O(1)
+    void sortIt(vector<long long>& arr) {     // TC: O(n*log n), SC: O(log n)
       int n = arr.size();
       // HEAP_SIZE = n;
       heapSort(arr, n);

@@ -6,6 +6,7 @@ using namespace std;
 #define rFOR(i,a,b) for(int i=(a); i>=(b); i--)
 #define rFORk(i,a,b,k) for(int i=(a); i>=(b); i-=k)
 #define pb push_back
+#define pf push_front
 typedef vector<int> vi;
 typedef vector<string> vs;
 typedef long long int ll;

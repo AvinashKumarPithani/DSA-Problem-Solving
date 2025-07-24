@@ -6,6 +6,7 @@ using namespace std;
 #define rFOR(i,a,b) for(int i=(a); i>=(b); i--)
 #define rFORk(i,a,b,k) for(int i=(a); i>=(b); i-=k)
 #define pb push_back
+#define pf push_front
 typedef vector<int> vi;
 typedef vector<string> vs;
 typedef long long int ll;
@@ -15,42 +16,43 @@ typedef vector<ull> vull;
 typedef vector<bool> vb;
 const int MOD = 1e9+7;
 
+// https://leetcode.com/problems/sort-an-array/
+
 class Solution {
   public:
-    int HEAP_SIZE;
-    void maxHeapify(vll& a, int i) {   // O(log n)
+    // int HEAP_SIZE;
+    void maxHeapify(vi& a, int heap_size, int i) {   // O(log n)
       int l = 2*i + 1;
       int r = 2*i + 2;
       int largest = i;
-      if(l < HEAP_SIZE && a[l] > a[largest]) {
+      if(l < heap_size && a[l] > a[largest]) {
         largest = l;
       }
-      if(r < HEAP_SIZE && a[r] > a[largest]) {
+      if(r < heap_size && a[r] > a[largest]) {
         largest = r;
       }
       if(largest != i) {
         swap(a[i], a[largest]);
-        maxHeapify(a, largest);
+        maxHeapify(a, heap_size, largest);
       }
     }
-    void buildMaxHeap(vll& a) {     // O(n)
-      int n = a.size();
+    void buildMaxHeap(vi& a, int n) {     // O(n)
       rFOR(i, n/2-1, 0){
-        maxHeapify(a, i);
+        maxHeapify(a, n, i);
       }
     }
-    void heapSort(vll& a, int n) {     // O(n*log n)
-      buildMaxHeap(a);
+    void heapSort(vi& a, int n) {     // O(n*log n)
+      buildMaxHeap(a, n);
       rFOR(i, n-1, 1) {
         swap(a[0], a[i]);
-        HEAP_SIZE--;
-        maxHeapify(a, 0);
+        maxHeapify(a, i, 0);
       }
     }
-    void sortIt(vector<long long>& arr) {     // TC: O(n*log n), SC: O(log n)
-      int n = arr.size();
-      HEAP_SIZE = n;
-      heapSort(arr, n);
+    vi sortArray(vector<int>& nums) {     // TC: O(n*log n), SC: O(log n)
+      int n = nums.size();
+      // HEAP_SIZE = n;
+      heapSort(nums, n);
+      return nums;
     }
 };
 
@@ -59,13 +61,13 @@ void solve(Solution sol) {
     getline(cin, line); // Read the whole line
 
     istringstream iss(line); // Create stream from line
-    vll nums;
-    ll x;
+    vi nums;
+    int x;
     while (iss >> x) {
       nums.pb(x); // Extract numbers one by one
     }
-    sol.sortIt(nums);
-    for(auto i: nums) {
+    vi res = sol.sortArray(nums);
+    for(auto i: res) {
       cout << i << " ";
     }
 }
@@ -75,7 +77,8 @@ int main() {
     cin.tie(NULL);
     cout.tie(NULL);
     int t = 1;
-    // cin >> t;
+    cin >> t;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
     Solution obj = Solution();
     while(t--) {
         solve(obj);
