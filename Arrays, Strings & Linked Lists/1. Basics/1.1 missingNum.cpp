@@ -14,6 +14,8 @@ typedef vector<ll> vll;
 typedef vector<ull> vull;
 const int MOD = 1e9+7;
 
+// https://leetcode.com/problems/missing-number/description/
+
 class Solution {
 public:
     int missingNumber(vector<int>& nums) {    // O(n*log n)

@@ -15,6 +15,8 @@ typedef vector<ull> vull;
 typedef vector<bool> vb;
 const int MOD = 1e9+7;
 
+// https://leetcode.com/problems/missing-number/description/
+
 class Solution {
 public:
     int missingNumber(vector<int>& nums) {    // TC: O(n), SC: O(n)
