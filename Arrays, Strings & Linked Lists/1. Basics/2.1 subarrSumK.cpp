@@ -15,6 +15,8 @@ typedef vector<ull> vull;
 typedef vector<bool> vb;
 const int MOD = 1e9+7;
 
+// https://leetcode.com/problems/subarray-sum-equals-k/description/
+
 class Solution {
 public:
     int subarraySum(vector<int>& nums, int k) {     // TC: O(n), SC: O(n)
