@@ -13,16 +13,16 @@ typedef unsigned long long int ull;
 typedef vector<ll> vll;
 typedef vector<ull> vull;
 
-// Leetcode: 1071. Greatest Common Divisor of Strings
-string md(string a, string b){
+// https://leetcode.com/problems/greatest-common-divisor-of-strings/description/
+string md(string a, string b){      // O(m^2)
     int n = b.length();
-    int an = a.length();
+    int m = a.length();
     while((a.size())>=(b.size()) && a.substr(0,n)==b){
         a = a.substr(n, a.size());
     }
     return a;
 }
-string fun(string a, string b){
+string fun(string a, string b){     // O(m^2)
     if(b == "") return a;
     string x = md(a, b);
     if((x.size()) >= (b.size())){
