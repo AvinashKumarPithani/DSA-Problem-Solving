@@ -13,10 +13,11 @@ typedef unsigned long long int ull;
 typedef vector<ll> vll;
 typedef vector<ull> vull;
 
+// SPOJ: PFACT - Prime Factors
 const int N = 100000;
 bool pr[N+1];
 vi prs;
-void sieve(){
+void sieve(){       // O(N*loglogN)
     FOR(i,2,N+1) pr[i] = true;
     for(int i=2; i*i<=N; i++){
         if(pr[i]){
@@ -31,7 +32,7 @@ void sieve(){
         }
     }
 }
-void solve() {
+void solve() {      // O(N*P) where P is the number of primes <= N
     FOR(i, 2, N+1){
         cout << i << ": ";
         if(pr[i]) cout << i;
