@@ -15,22 +15,20 @@ typedef vector<ull> vull;
 
 // https://www.codechef.com/practice/course/logical-problems/DIFF800/problems/PRB01
 
-string isPrime(int n) {   // O(n)
-    if(n < 2) {
-      return "no";
-    }
-    FOR(i, 2, n) {
-      if(n%i == 0) {
-        return "no";
-      }
-    }
-    return "yes";
-}
-
 void solve() {
     int n;
     cin >> n;
-    cout << isPrime(n);
+    if(n<2) {
+        cout<< "no";
+        return;
+    }
+    for(int i=2; i*i<=n; i++){
+        if(n%i == 0){
+            cout << "no";
+            return;
+        }
+    }
+    cout << "yes";
 }
 
 int main() {
