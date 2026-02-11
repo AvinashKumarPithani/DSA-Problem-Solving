@@ -34,3 +34,22 @@ int countPrimes(int N) {
     }
     return c;   
 }
+
+void solve() {
+    int n;
+    cin >> n;
+    cout << countPrimes(n);
+}
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+    int t = 1;
+    // cin >> t;
+    while(t--) {
+        solve();
+        cout << '\n';
+    }
+    return 0;
+}
