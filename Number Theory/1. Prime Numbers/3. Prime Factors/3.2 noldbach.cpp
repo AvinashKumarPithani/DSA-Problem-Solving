@@ -18,7 +18,6 @@ typedef vector<ull> vull;
 const int N = 1000;
 bool pr[N+1];
 vi prs;
-bool nold[N+1];
 void sieve() {      // O(N*loglogN)
     FOR(i, 2, N+1) pr[i] = true;
     for(int i=2; i*i<=N; i++){
@@ -33,29 +32,31 @@ void sieve() {      // O(N*loglogN)
             prs.pb(i);
         }
     }
-    int x = prs.size();
-    FOR(i, 1, x){
-        int r = prs[i]+prs[i-1]+1;
-        if(r>N) break;
-        if(pr[r]){
-            nold[r] = true;
-        }
-    }
 }
-// O(N*loglogN) solution
-void solve() {
+
+void solve() {      // O(N*P) where P is the number of primes less than N
     int n,k;
     cin >> n >> k;
     int c = 0;
-    
-    FOR(i, 2, n+1){
-        if(nold[i]){
-            c++;
-            cout << i << " ";
+    int x = prs.size();
+    FOR(i, 5, n+1){
+        if(pr[i]){
+            FOR(j, 1, x){
+                int r = prs[j-1] + prs[j] + 1;
+                if(r > i) break;
+                if( r == i){
+                    // cout << i << " ";
+                    c++;
+                    break;
+                }
+            }
+        }
+        if(c==k){
+            break;
         }
     }
-    cout << '\n';
-    if(c==k){
+    // cout<< endl;
+    if(c==k){     // checking c==k is enough if we break the loop when c==k, we won't be able to get c>k. So, we can check if c==k or c>=k, both will work.
         cout << "YES";
     }
     else{
@@ -68,7 +69,7 @@ int main() {
     cin.tie(NULL);
     cout.tie(NULL);
     int t = 1;
-    cin >> t;
+    // cin >> t;
     sieve();
     while(t--) {
         solve();

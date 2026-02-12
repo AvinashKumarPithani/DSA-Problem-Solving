@@ -12,10 +12,13 @@ typedef long long int ll;
 typedef unsigned long long int ull;
 typedef vector<ll> vll;
 typedef vector<ull> vull;
+
+// https://codeforces.com/problemset/problem/17/A
+// Noldbach problem states that at least k prime numbers from 2 to n inclusively can be expressed as the sum of three integer numbers: two neighboring prime numbers and 1. For example, 19 = 7 + 11 + 1, or 13 = 5 + 7 + 1.
 const int N = 1000;
 bool pr[N+1];
 vi prs;
-void sieve() {
+void sieve() {      // O(N*loglogN)
     FOR(i, 2, N+1) pr[i] = true;
     for(int i=2; i*i<=N; i++){
         if(pr[i]){
@@ -30,27 +33,27 @@ void sieve() {
         }
     }
 }
-// O(N^2) solution
-void solve() {
+
+void solve() {      // O(N*P) where P is the number of primes less than N
     int n,k;
     cin >> n >> k;
     int c = 0;
     int x = prs.size();
-    FOR(i, 5, n){
+    FOR(i, 5, n+1){
         if(pr[i]){
             FOR(j, 1, x){
                 int r = prs[j-1] + prs[j] + 1;
                 if(r > i) break;
                 if( r == i){
-                    cout << i << " ";
+                    // cout << i << " ";
                     c++;
                     break;
                 }
             }
         }
     }
-    cout<< endl;
-    if(c==k){
+    // cout<< endl;
+    if(c>=k){
         cout << "YES";
     }
     else{
@@ -63,7 +66,7 @@ int main() {
     cin.tie(NULL);
     cout.tie(NULL);
     int t = 1;
-    cin >> t;
+    // cin >> t;
     sieve();
     while(t--) {
         solve();
