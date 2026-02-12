@@ -9,3 +9,6 @@ out.txt
 
 # contest files
 Contests/
+
+# wrong solutions
+Number Theory/1. Prime Numbers/3. Prime Factors/5.2 almostPrime.cpp
