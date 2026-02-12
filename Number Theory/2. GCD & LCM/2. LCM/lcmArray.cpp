@@ -9,11 +9,11 @@ using namespace std;
 class Solution {
   public:
     const int M = 1000000007;
-    int gcd(int a, int b){
+    int gcd(int a, int b){    // O(log(min(a,b)))
         if(b==0) return a;
         return gcd(b, a%b);
     }
-    int lcmOfArray(int N , int a[]) {
+    int lcmOfArray(int N , int a[]) {   // O(N*log(maxi)) where maxi is the maximum element in the array
         // code here
         long long x = (a[0]*a[1]/gcd(a[0],a[1]) )%M;
         for(int i=2; i<N; i++){
