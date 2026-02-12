@@ -15,11 +15,13 @@ typedef vector<ull> vull;
 
 // https://leetcode.com/problems/find-greatest-common-divisor-of-array/
 
-int gcd(int a, int b){
+// Given an integer array nums, return the greatest common divisor of the smallest number and largest number in nums.
+
+int gcd(int a, int b){      // O(log(min(a,b)))
     if(b==0) return a;
     return gcd(b, a%b);
 }
-int findGCD(vector<int>& nums) {
+int findGCD(vector<int>& nums) {    // O(n) to find min and max + O(log(mini)) to find gcd
     int n = nums.size();
     int mini = INT_MAX;
     int maxi = INT_MIN;
