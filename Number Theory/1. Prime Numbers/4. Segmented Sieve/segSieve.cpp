@@ -13,11 +13,12 @@ typedef unsigned long long int ull;
 typedef vector<ll> vll;
 typedef vector<ull> vull;
 
+//https://www.spoj.com/problems/PRIME1/ // Print all prime numbers between N and M using Segmented Sieve O(sqm*loglog(sqm)) + O(t*(M-N)*loglog(sqm))
 const int sqm = 31623;
 int pr[sqm];
 vi prs;
 
-void sieve(){
+void sieve(){   //O(sqm*loglog(sqm))
     FOR(i, 2, sqm+1) pr[i] = true;
     for(int i=2; i*i<=sqm; i++){
         if(pr[i]){
@@ -32,7 +33,7 @@ void sieve(){
         }
     }
 }
-void segSieve(int N, int M){
+void segSieve(int N, int M){    // O((M-N)*loglog(sqm))
     bool p[M-N+1];
     FOR(i, 0, M-N+1) p[i] = true;
     if(N == 1) p[0] = false; // Border Case when N=1
@@ -49,12 +50,12 @@ void segSieve(int N, int M){
         }
     }
     FOR(i, N, M+1){
-        if(p[i-N]) cout << i << " ";
+        if(p[i-N]) cout << i << '\n';
     }
 }
 
 //Prime numbers between N & M using Segmented Sieve O(sqm*loglog(sqm)))
-void solve() {
+void solve() {  // O((M-N)*loglog(sqm))
     int N,M;
     cin >> N >> M;
     segSieve(N, M);
