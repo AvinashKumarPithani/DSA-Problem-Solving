@@ -51,11 +51,11 @@ void solve() {
     FOR(i, 2, n+1){
         if(nold[i]){
             c++;
-            cout << i << " ";
+            // cout << i << " ";
         }
     }
-    cout << '\n';
-    if(c==k){
+    // cout << '\n';
+    if(c>=k){
         cout << "YES";
     }
     else{
@@ -68,7 +68,7 @@ int main() {
     cin.tie(NULL);
     cout.tie(NULL);
     int t = 1;
-    cin >> t;
+    // cin >> t;
     sieve();
     while(t--) {
         solve();
