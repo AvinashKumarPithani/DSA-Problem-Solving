@@ -13,12 +13,12 @@ typedef unsigned long long int ull;
 typedef vector<ll> vll;
 typedef vector<ull> vull;
 
-// Leetcode: 1071. Greatest Common Divisor of Strings
-int gcd(int a, int b){
+// https://leetcode.com/problems/greatest-common-divisor-of-strings/description/
+int gcd(int a, int b){      // O(log(min(a,b)))
     if(b==0) return a;
     return gcd(b,a%b);
 }
-string gcdOfStrings(string str1, string str2) {
+string gcdOfStrings(string str1, string str2) {     // O(n1+n2) to check if str1+str2 == str2+str1 + O(log(min(n1,n2))) to find gcd of lengths + O(gcd(n1, n2)) to find substring
     if(str1+str2 == str2+str1){
         int n1 = str1.length();
         int n2 = str2.length();
