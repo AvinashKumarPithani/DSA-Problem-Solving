@@ -14,7 +14,9 @@ typedef vector<ll> vll;
 typedef vector<ull> vull;
 
 //https://codeforces.com/problemset/problem/1389/A
-void solve() {
+//given two integers l and r. Find two integers x and y such that l≤x<y≤r and l≤LCM(x,y)≤r.
+
+void solve() {     // O(1)
     int l, r;
     cin >> l >> r;
     if(2*l > r) cout << -1 <<" "<< -1;
