@@ -13,11 +13,14 @@ typedef unsigned long long int ull;
 typedef vector<ll> vll;
 typedef vector<ull> vull;
 
-int gcd(int a, int b){
+// https://www.spoj.com/problems/CEQU/
+// given three integers a, b and c. Find if there exist two integers x and y such that ax + by = c. i.e. linear diophantine equation or not.
+
+int gcd(int a, int b){      // O(log(min(a, b)))
     if(b == 0) return a;
     return gcd(b, a%b);
 }
-void solve() {
+void solve() {      // O(log(min(a, b)))
     int a, b, c;
     cin >> a >> b >> c;
     if(c % gcd(a, b) == 0) cout << "Yes";
