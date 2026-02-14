@@ -15,12 +15,12 @@ typedef vector<ull> vull;
 
 // https://leetcode.com/problems/check-if-it-is-a-good-array/description/
 
-int gcd(int a, int b){
+int gcd(int a, int b){      // O(log(min(a, b)))
     if(b == 0) return a;
     return gcd(b, a%b);
 }
 
-bool isGoodArray(vector<int>& nums) {
+bool isGoodArray(vector<int>& nums) {   // O(n*log(max(nums)))
     int g = nums[0];
     for(auto i : nums){
         g = gcd(i, g);
