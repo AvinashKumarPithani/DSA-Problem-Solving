@@ -15,7 +15,7 @@ typedef vector<ull> vull;
 
 // https://codeforces.com/problemset/problem/530/C
 
-int ex_gcd(int a, int b, int &x, int &y){
+int ex_gcd(int a, int b, int &x, int &y){   // O(log(min(a, b)))
     if(b == 0){
         x = 1;
         y = 0; // it can be any value i.e. y = 0,1,2,3,..
@@ -27,7 +27,7 @@ int ex_gcd(int a, int b, int &x, int &y){
     y = x0 - (a/b)*y0;
     return g;
 }
-void solve() {
+void solve() {      // O(log(min(a, b)) + r-l+1)
     int a, b, c, x, y, g;
     cin >> a >> b >> c;
     if(a > b) g = ex_gcd(a, b, x, y);
