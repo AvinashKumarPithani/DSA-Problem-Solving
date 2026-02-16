@@ -40,7 +40,7 @@ bool is_prime(int n){       // O(n^0.5)
     return true;
 }
 
-void solve() {          // O(N * A^0.5) where A = max(a[i])
+void solve() {      // O(N * A^0.5 + q) where A = max(a[i]), q = no. of queries
     int n, q;
     cin >> n >> q;
     int a[n+1], ph[n+1], preS[n+1];
