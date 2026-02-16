@@ -17,7 +17,7 @@ typedef vector<ull> vull;
 // Find no. of prime phi(a[i])'s in [l, r] range of the given array
 // There is only one prime phi(n) vlaue i.e. 2 {for n = 3, 4, 6 }
 
-void solve() {          // O(n)
+void solve() {          // O(n + q) where n = size of array, q = no. of queries
     int n, q;
     cin >> n >> q;
     int a[n+1], preS[n+1];
