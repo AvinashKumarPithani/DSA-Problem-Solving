@@ -30,7 +30,7 @@ int phi(int n){     //O(n^0.5)
     return res;
 }
 
-void solve() {
+void solve() {      // O(sqrt(n))
     int n;
     cin >> n;
     cout << phi(n);
