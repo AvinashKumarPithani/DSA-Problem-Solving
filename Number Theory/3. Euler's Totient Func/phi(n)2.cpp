@@ -21,7 +21,7 @@ typedef vector<ull> vull;
 const int N = 1000000;
 int ph[N+1];
 
-void phi(){     
+void phi(){     // O(N*loglogN)
     FOR(i, 1, N+1) ph[i] = i;
     FOR(i, 2, N+1){
         if(ph[i] == i){
@@ -32,7 +32,7 @@ void phi(){
     }
 }
 
-void solve() {
+void solve() {      // O(1)
     int n;
     cin >> n;
     cout << ph[n];
