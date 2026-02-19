@@ -13,11 +13,12 @@ typedef unsigned long long int ull;
 typedef vector<ll> vll;
 typedef vector<ull> vull;
 
-// https://www.spoj.com/problems/LCMSUM/ 
+// https://www.spoj.com/problems/LCMSUM/
+// Given a number n, find the sum of lcm(i, n) for i = 1 to n.
 
-// Brute force // O(N^2)
+// Brute force 
 
-void solve() { 
+void solve() {      // O(n^2)
     int n;
     cin >> n;
     ll s = 0;
