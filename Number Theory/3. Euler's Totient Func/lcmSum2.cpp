@@ -15,6 +15,7 @@ typedef vector<ull> vull;
 
 // https://www.spoj.com/problems/LCMSUM/ 
 // Given a number n, find the sum of lcm(i, n) for i = 1 to n.
+const int N = 1000000;
 
 int gcd(int a, int b){      //O(logn)
     if(b == 0) return a;
