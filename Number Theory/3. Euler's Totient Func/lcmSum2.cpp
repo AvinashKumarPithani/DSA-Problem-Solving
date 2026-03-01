@@ -16,26 +16,50 @@ typedef vector<ull> vull;
 // https://www.spoj.com/problems/LCMSUM/ 
 // Given a number n, find the sum of lcm(i, n) for i = 1 to n.
 const int N = 1000000;
+int ph[N+1];
+ll lcmSum[N+1];
 
-int gcd(int a, int b){      //O(logn)
-    if(b == 0) return a;
-    return gcd(b, a%b); 
+void phi(){     // O(N*loglogN)
+    FOR(i, 1, N+1) ph[i] = i;
+    FOR(i, 2, N+1){
+        if(ph[i] == i){
+            FORk(j, i, N+1, i){
+                ph[j] = ph[j] - ph[j]/i;
+            }
+        }
+    }
 }
 
-void solve() {      // O(n*logn)
+void precomputeLCMSum(){     // O(N^2) 
+    FOR(i, 1, N+1){
+        lcmSum[i] = 0;
+        for(int t=1; t<=i; t++){
+            if(i%t == 0){
+                lcmSum[i] += (ll)t * ph[t];
+            }
+        }
+        lcmSum[i] = (ll)(lcmSum[i] + 1) * i / 2;
+    }
+    // Total iterations: ∑(i=1 to 10^6) i = 10^6 * (10^6 + 1) / 2 ≈ 5×10^11
+    // That is 500 billion iterations.
+    // Even if the CPU does 1 billion operations per second, it would take:
+    // 500 seconds ≈ 8 minutes
+    // In reality, it would take much longer.
+    // So VS Code is not broken. The program will just stuck in a massive loop.
+}
+
+void solve() {      // O(1)
     int n;
     cin >> n;
-    ll s = 0;
-    FOR(i, 1, n+1){
-        s += (ll)n*i / gcd(n, i);  // lcm(a, b) = (a*b)/gcd(a, b)
-    }
-    cout << s;
+    cout << lcmSum[n];
 }
 
-int main() {       // O(t*n*logn)
+int main() {       // O(N*loglogN + N^2 + t) => O(N^2 + t)
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
+    phi();
+    precomputeLCMSum();
     int t = 1;
     cin >> t;
     while(t--) {
