@@ -13,21 +13,21 @@ typedef unsigned long long int ull;
 typedef vector<ll> vll;
 typedef vector<ull> vull;
 
-int pow(int a, int b){
+int pow(int a, int b){      // TC: O(log b)  SC: O(log b)
     if(b == 0) return 1;
     int ans = pow(a, b/2);
     ans *= ans;
-    if(b % 2 == 0) ans *= a;
+    if(b % 2 == 1) ans *= a;
     return ans;
 }
 
-void solve() {
+void solve() {      // TC: O(log b)
     int a, b;
     cin >> a >> b;
     cout << pow(a, b);
 }
 
-int main() {
+int main() {        // O(t*log b)
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
