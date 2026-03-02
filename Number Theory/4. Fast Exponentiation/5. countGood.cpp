@@ -16,7 +16,7 @@ typedef vector<ull> vull;
 // https://leetcode.com/problems/count-good-numbers/
 
 const int MOD = 1e9+7;
-ll pow(int a, ll b){
+ll pow(int a, ll b){    // TC: O(log b)  SC: O(log b)
     if(b == 0) return 1;
     ll ans = pow(a, b/2);
     ans = (ans*ans) % MOD;
@@ -24,22 +24,22 @@ ll pow(int a, ll b){
     return ans;
 }
 
-int countGoodNumbers(long long n) {  // O(log n/2);
+int countGoodNumbers(long long n) {  // TC: O(log n)  SC: O(log n)
     ll res = 1;
-    if(n&1) res = 5;
-    res = (res*pow(5, n/2)) % MOD;
-    res = (res*pow(4, n/2)) % MOD;
+    res = (res*pow(5, n/2)) % MOD;  // for odd places (1, 3, 5, 7, 9) --> 5 options
+    res = (res*pow(4, n/2)) % MOD;  // for even places (0, 2, 4, 6, 8) --> 4 options
+    if(n&1) res = (res*5) % MOD;     // if n is odd, then we have one extra odd place with 5 options
 
     return res; 
 }
 
-void solve() {
+void solve() {  // TC: O(log n)
     ll n;
     cin >> n;
     cout << countGoodNumbers(n);
 }
 
-int main() {
+int main() {    // O(t*log n)
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
