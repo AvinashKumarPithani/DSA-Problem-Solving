@@ -13,8 +13,10 @@ typedef unsigned long long int ull;
 typedef vector<ll> vll;
 typedef vector<ull> vull;
 
+// 'a' rised to power 'b' with modular arithmetic
+
 const int MOD = 1e9+7;
-ll pow(int a, int b){
+ll pow(int a, int b){       // TC: O(log b)  SC: O(log b)
     if(b == 0) return 1;
     ll ans = pow(a, b/2);
     ans = (ans*ans) % MOD;
@@ -22,13 +24,13 @@ ll pow(int a, int b){
     return ans;
 }
 
-void solve() {
+void solve() {      // TC: O(log b)
     int a, b;
     cin >> a >> b;
     cout << pow(a, b) % MOD;
 }
 
-int main() {
+int main() {        // O(t*log b)
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
