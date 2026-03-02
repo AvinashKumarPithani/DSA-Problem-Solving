@@ -14,6 +14,7 @@ typedef vector<ll> vll;
 typedef vector<ull> vull;
 
 // https://leetcode.com/problems/powx-n/
+// Implement pow(x, n), which calculates x raised to the power n, where n can be negative also.
 
 double power(double a, long long b) { // TC: O(log b)  SC: O(log b)
     // if(b == 1) return a; 
@@ -21,26 +22,26 @@ double power(double a, long long b) { // TC: O(log b)  SC: O(log b)
     if(b == 0) return 1.0; 
     double ans = power(a, b/2);
     ans *= ans;
-    if(b&1) ans *= a;
+    if(b&1) ans *= a;      // using bitwise operator to check if b is odd
     return ans; 
 }
-double myPow(double x, int n) { 
+double myPow(double x, int n) { // TC: O(log n)  SC: O(log n)
     // int r = n;
-    long long r = n; // use long long to handle INT_MIN safely
+    long long r = n; // using long long to handle INT_MIN safely
     if(n < 0) r = -r;
     double res = power(x, r);
     if(n < 0) return 1.0/res;
     return res;
 }
 
-void solve() {
+void solve() {  // TC: O(log n)
     double x;
     int n;
     cin >> x >> n;
     cout << myPow(x, n);
 }
 
-int main() {
+int main() {    // O(t*log n)
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
