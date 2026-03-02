@@ -14,34 +14,33 @@ typedef vector<ll> vll;
 typedef vector<ull> vull;
 
 // https://leetcode.com/problems/powx-n/
-// Implement iterative pow(x, n), which calculates x raised to the power n, where n can be negative also. Here space complexity: O(log n) --> O(1)
 
 double power(double a, ll b) { // TC: O(log b)  SC: O(1)
     double ans = 1;
     while(b){
         if(b&1) ans *= a;
         a *= a;
-        b = b>>1;   // using bitwise operator to divide b by 2
+        b = b>>1;
     }
     return ans; 
 }
-double myPow(double x, int n) { // TC: O(log n)  SC: O(1)
+double myPow(double x, int n) { 
     // int r = n;
-    ll r = n; // using long long to handle INT_MIN safely
+    ll r = n; // use long long to handle INT_MIN safely
     if(n < 0) r = -r;
     double res = power(x, r);
     if(n < 0) return 1.0/res;
     return res;
 }
 
-void solve() {  // TC: O(log n)
+void solve() {
     double x;
     int n;
     cin >> x >> n;
     cout << myPow(x, n);
 }
 
-int main() {    // O(t*log n)
+int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
