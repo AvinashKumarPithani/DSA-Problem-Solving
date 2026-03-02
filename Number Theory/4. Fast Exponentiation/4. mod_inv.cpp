@@ -13,8 +13,10 @@ typedef unsigned long long int ull;
 typedef vector<ll> vll;
 typedef vector<ull> vull;
 
+// Modulo inverse of x mod MOD, where MOD is prime, can be calculated using Fermat's Little Theorem as x^(MOD-2) mod MOD
+
 const int MOD = 7; // Prime
-ll pow(int a, int b){
+ll pow(int a, int b){   // TC: O(log b)  SC: O(log b)
     if(b == 0) return 1;
     ll ans = pow(a, b/2);
     ans = (ans*ans) % MOD;
@@ -22,16 +24,16 @@ ll pow(int a, int b){
     return ans;
 }
 
-ll mod_inv(int x){
+ll mod_inv(int x){  // TC: O(log MOD)  SC: O(log MOD)
     return pow(x, MOD-2);
 }
-void solve() {
+void solve() {  // TC: O(log MOD)
     int x;
     cin >> x;
     cout << mod_inv(x);
 }
 
-int main() {
+int main() {    // O(t*log MOD)
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
