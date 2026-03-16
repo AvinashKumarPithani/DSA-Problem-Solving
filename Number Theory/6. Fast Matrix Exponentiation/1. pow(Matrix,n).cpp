@@ -25,7 +25,7 @@ matrix identity() {
   }};
 }
 
-matrix mul(matrix &a, matrix &b) {
+matrix mul(matrix &a, matrix &b) {    // TC: O(1)  SC: O(1)
   matrix c = {{
     {0, 0},
     {0, 0}
@@ -40,7 +40,7 @@ matrix mul(matrix &a, matrix &b) {
   return c;
 }
 
-matrix pow(matrix &a, int b) {
+matrix pow(matrix &a, int b) {    // TC: O(log b)  SC: O(1)
   if(b==0) return identity();
   matrix ans = pow(a, b/2);
   ans = mul(ans, ans);
@@ -74,7 +74,7 @@ void solve() {      // O(log n)
   }
 }
 
-int main() {      // O(t*log N)
+int main() {      // O(t*log MAX(n))
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
   cout.tie(NULL);
