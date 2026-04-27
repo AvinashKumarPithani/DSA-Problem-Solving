@@ -14,15 +14,32 @@ typedef unsigned long long int ull;
 typedef vector<ll> vll;
 typedef vector<ull> vull;
 typedef vector<bool> vb;
-const int MOD = 1e9+7;
+// const int MOD = 1e9+7;  // Standard prime modulo
+// const int MOD = 2147483647; // Max int value; use when 1e9+7 is too small
 
 class Solution {
 public:
     
 };
 
-void solve(Solution sol) {
-    
+void solve(Solution& sol) {
+    int n;
+    cin >> n;
+    // cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+    // string line;
+    // getline(cin, line); // Read the whole line
+
+    // istringstream iss(line); // Create stream from line
+    // vi nums;
+    // int x;
+    // while (iss >> x) {
+    //   nums.pb(x); // Extract numbers one by one
+    // }
+    // cin >> line;
+
+    /* actual solution code goes here */
+
 }
 
 int main() {
@@ -31,6 +48,7 @@ int main() {
     cout.tie(NULL);
     int t = 1;
     cin >> t;
+    //cin.ignore(numeric_limits<streamsize>::max(), '\n');
     Solution obj = Solution();
     while(t--) {
         solve(obj);
