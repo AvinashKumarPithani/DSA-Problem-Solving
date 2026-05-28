@@ -14,7 +14,7 @@ typedef vector<ll> vll;
 typedef vector<ull> vull;
 
 // https://codeforces.com/problemset/problem/26/A
-// A number is called almost prime if it has exactly two distinct prime divisors. For example, numbers 6, 18, 24 are almost prime, while 4, 8, 9, 42 are not. Find the amount of almost prime numbers which are between 1 and n, inclusive.+ 7 + 1.
+// A number is called almost prime if it has exactly two distinct prime divisors. For example, numbers 6, 18, 24 are almost prime, while 4, 8, 9, 42 are not. Find the amount of almost prime numbers which are between 1 and n, inclusive.
 const int N = 3000;
 bool pr[N+1];
 vi prs;
@@ -34,7 +34,7 @@ void sieve() {      // O(N*loglogN)
     }
 }
 
-void solve() {      // O(n*P) where P is the number of primes less than N
+void solve() {      // O(n*P) where P is the number of primes less than N = N/log(N)
     int n;
     cin >> n;
     int almostPrimes = 0;
@@ -56,7 +56,7 @@ void solve() {      // O(n*P) where P is the number of primes less than N
     cout << almostPrimes;
 }
 // Codeforces 26A
-int main() {
+int main() {    // O(N*loglogN + n*N/log(N)) => O(n*N/log(N)) ~ took 92 ms on codeforces
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
