@@ -37,13 +37,13 @@ vi sieve(int N) {      // O(N*loglogN)
     return prs;
 }
 
-void solve() {      // O(n*P) where P is the number of primes less than N
+void solve() {      // O(n*loglogN + n*n/log(n)) => O(n*n/log(n)))
     int n;
     cin >> n;
-    vi prs = sieve(n);  // small optimization, using n < N
+    vi prs = sieve(n);  // O(n*loglog(n)), small optimization, using n < N
     int almostPrimes = 0;
     int x = prs.size();
-    FOR(i, 2, n+1){
+    FOR(i, 2, n+1){     // O(n*P) where P is the number of primes less than n = n/log(n)
         int c = 0;
         FOR(j, 0, x){
             int d = prs[j];
@@ -60,7 +60,7 @@ void solve() {      // O(n*P) where P is the number of primes less than N
     cout << almostPrimes;
 }
 // Codeforces 26A
-int main() {
+int main() {    // O(n*loglog(n) + n^2 / log n) => O(n^2 / log n) ~ took 62 ms on codeforces
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
