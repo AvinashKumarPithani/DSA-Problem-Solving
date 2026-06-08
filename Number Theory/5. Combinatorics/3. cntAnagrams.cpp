@@ -13,12 +13,23 @@ typedef unsigned long long int ull;
 typedef vector<ll> vll;
 typedef vector<ull> vull;
 
+// https://leetcode.com/problems/count-anagrams/
+
+/*
+You are given a string s containing one or more words. Every consecutive pair of words is separated by a single space ' '.
+
+A string t is an anagram of string s if the ith word of t is a permutation of the ith word of s.
+-- For example, "acb dfe" is an anagram of "abc def", but "def cab" and "adc bef" are not.
+
+Return the number of distinct anagrams of s. Since the answer may be very large, return it modulo 109 + 7. 
+*/
+
 const int MOD = 1e9+7;
 const int N = 1e5;
 ll f[N+1];
 ll fi[N+1];
 
-ll pow(int a, int b){
+ll pow(int a, int b){   // O(log b)
   if(b == 0) return 1;
   ll ans = pow(a, b/2);
   ans = (ans*ans) % MOD;
@@ -27,11 +38,11 @@ ll pow(int a, int b){
 }
 
 
-ll mod_inv(int x) {
-  return pow(x, MOD-2);
+ll mod_inv(int x) {   // Fermat's little theorem: a^(p-1) ≡ 1 (mod p) for prime p and a not divisible by p
+  return pow(x, MOD-2); // O(log MOD)
 }
 
-void pre_compute() {
+void pre_compute() {  // O(N + log MOD)
   f[0] = 1;
   FOR(i, 1, N+1) {
     f[i] = (i*f[i-1]) % MOD;
@@ -67,7 +78,7 @@ public:
     }
 };
 
-void solve(Solution sol) {
+void solve(Solution sol) {  // O(n)
     string s;
     // cin >> s;    
     getline(cin >> ws, s); // skips the newline, reads the next line properly
