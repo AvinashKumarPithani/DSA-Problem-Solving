@@ -19,13 +19,13 @@ typedef vector<ull> vull;
 
 int climbStairs(int n) {  // TC: O(n)  SC: O(1)
     if(n <= 2) return n;  // given n >= 1, so we are not handling n=0 case
-    int a = 1, b = 2, c;
+    int a = 1, b = 2;
     for(int i=3; i<=n; i++){
-        c = a + b;
+        int c = a + b;
         a = b;
         b = c;
     }
-    return c;
+    return b;
 }
 
 void solve() {      // TC: O(n)
