@@ -11,4 +11,7 @@ out.txt
 Contests/
 
 # wrong solutions
+Number Theory/1. Prime Numbers/3. Prime Factors/5.1.1 Naive_thought_almostPrime.cpp
 Number Theory/1. Prime Numbers/3. Prime Factors/5.2 almostPrime.cpp
+Number Theory/1. Prime Numbers/3. Prime Factors/5.2.1 almostPrime.cpp
+Number Theory/4. Fast Exponentiation/3.1 iterPow(x,n).cpp
