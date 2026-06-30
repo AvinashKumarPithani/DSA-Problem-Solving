@@ -19,7 +19,7 @@ const int MOD = 1e9+7;
 
 class Solution {
   public:
-    ll pr(int n, int a, int b, int k) {
+    ll pr(int n, int a, int b, int k) {   // O(1)
       return (ll)k*b - (ll)k*(k-1)/2 + (ll)(n-k)*a;
     }
 
